@@ -9,10 +9,10 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [26.8.1]
+        node-version: [26]
 
     env:
-      DO_COVERALLS: 26.8.1
+      DO_COVERALLS: 26
 
     steps:
 
