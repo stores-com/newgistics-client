@@ -4,7 +4,7 @@ on: [push, workflow_dispatch]
 
 jobs:
   test:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     timeout-minutes: 10
 
     strategy:
@@ -17,23 +17,20 @@ jobs:
     steps:
 
     - name: Setup Node ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v7
       with:
         node-version: ${{ matrix.node-version }}
 
     - name: Checkout from Git
-      uses: actions/checkout@v2
+      uses: actions/checkout@v7
       with:
         persist-credentials: false
 
-    - name: Install ESLint
-      run: npm install -g eslint
-
-    - name: Run ESLint
-      run: eslint .
-
     - name: Run npm install
       run: npm install
+
+    - name: Run ESLint
+      run: npx eslint .
 
     - name: Run tests and coverage
       run: |-
